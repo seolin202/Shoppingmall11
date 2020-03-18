@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 
 const mongoose = require('mongoose');
+const morgan = require('morgan');
 
 
 const productsRoute = require('./api/routes/products');
@@ -14,7 +15,7 @@ mongoose.connect(mongoDBurl, {useNewUrlParser: true, useUnifiedTopology: true})
     .catch(err => console.log(err.message));
 
 
-
+app.use(morgan("dev"));
 app.use('/products', productsRoute);
 app.use('/orders', ordersRoute);
 
